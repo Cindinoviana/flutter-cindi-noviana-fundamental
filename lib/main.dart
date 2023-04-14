@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -14,138 +14,130 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   TextEditingController controller1 = TextEditingController();
   TextEditingController controller2 = TextEditingController();
-  int? result = 0, num1 = 0, num2 = 0;
-  add() {
+
+  double result = 0, angka1 = 0, angka2 = 0;
+
+  tambah() {
     setState(() {
-      num1 = int.parse(controller1.text);
-      num2 = int.parse(controller2.text);
-      result = num1! + num2!;
+      angka1 = double.parse(controller1.text);
+      angka2 = double.parse(controller2.text);
+      result = angka1 + angka2;
     });
   }
 
-  sub() {
+  kurang() {
     setState(() {
-      num1 = int.parse(controller1.text);
-      num2 = int.parse(controller2.text);
-      result = num1! - num2!;
+      angka1 = double.parse(controller1.text);
+      angka2 = double.parse(controller2.text);
+      result = angka1 - angka2;
     });
   }
 
-  mul() {
+  kali() {
     setState(() {
-      num1 = int.parse(controller1.text);
-      num2 = int.parse(controller2.text);
-      result = num1! * num2!;
+      angka1 = double.parse(controller1.text);
+      angka2 = double.parse(controller2.text);
+      result = angka1 * angka2;
     });
   }
 
-  divi() {
+  bagi() {
     setState(() {
-      num1 = int.parse(controller1.text);
-      num2 = int.parse(controller2.text);
-      result = num1! ~/ num2!;
+      angka1 = double.parse(controller1.text);
+      angka2 = double.parse(controller2.text);
+      result = angka1 / angka2;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Calculator"),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              Text(
-                "Result : $result",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
+        home: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        title: Text('Calculator'),
+      ),
+      body: Column(
+        children: [
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Result : $result',
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black))),
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
+              child: TextField(
                 controller: controller1,
                 decoration: InputDecoration(
-                    labelText: "Enter First Number",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20))),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
+                    labelText: 'Enter first number',
+                    filled: true,
+                    fillColor: Colors.white),
+              )),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
+              child: TextField(
                 controller: controller2,
                 decoration: InputDecoration(
-                    labelText: "Enter Second Number",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20))),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        add();
-                        controller1.clear();
-                        controller2.clear();
-                      },
-                      child: Text("ADD")),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        sub();
-                        controller1.clear();
-                        controller2.clear();
-                      },
-                      child: Text("SUBSTRACT")),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        mul();
-                        controller1.clear();
-                        controller2.clear();
-                      },
-                      child: Text("MULTIPLY")),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        divi();
-                        controller1.clear();
-                        controller2.clear();
-                      },
-                      child: Text("DIVIDE")),
-                ],
-              )
-            ],
+                    labelText: 'Enter second number',
+                    filled: true,
+                    fillColor: Colors.white),
+              )),
+          SizedBox(
+            height: 20,
           ),
-        ),
+          Align(
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        tambah();
+                        controller1.clear();
+                        controller2.clear();
+                      },
+                      child: Text('Add')),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        kurang();
+                        controller1.clear();
+                        controller2.clear();
+                      },
+                      child: Text('Substract')),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        kali();
+                        controller1.clear();
+                        controller2.clear();
+                      },
+                      child: Text('Multipy')),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        bagi();
+                        controller1.clear();
+                        controller2.clear();
+                      },
+                      child: Text('Divide'))
+                ],
+              ))
+        ],
       ),
-    );
+    ));
   }
 }
